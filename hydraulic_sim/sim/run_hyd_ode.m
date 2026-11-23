@@ -2,7 +2,7 @@
 hyd_init;
 P = hyd_params();
 S = hyd_sys_index(P);
-opts = odeset('RelTol', 1e-3, 'AbsTol', S.atol, 'MaxStep', 0.05, 'MaxOrder', 2);
+opts = odeset('RelTol', 1e-4, 'AbsTol', S.atol, 'MaxStep', 0.05, 'MaxOrder', 2);
 tic;
 [t, X] = ode15s(@(t, x) hyd_sys_rhs(t, x, S), [0 P.tEnd], S.X0, opts);
 fprintf('ode15s: %d steps, %.1f s\n', numel(t), toc);
