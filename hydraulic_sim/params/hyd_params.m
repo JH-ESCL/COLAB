@@ -127,7 +127,8 @@ end
 function s = mkpoppet(Lp, Dp, dp_crack, R_ovr, CdA_max, Q_rated, fQo, V)
 % Q_o   : 크래킹 유량 스케일 = fQo*Q_rated  (크래킹 이하 차압에서의 미소 누설 수준)
 %         너무 작게(<AbsTol) 잡으면 암시적 솔버의 Newton 반복이 잘못 수렴하므로 주의
-% R_rev : 역방향 누설 저항 (0.1 L/min @ 3000 psid)
+% R_rev : 역방향 누설 저항 (1 L/min @ 3000 psid). 실제 포펫보다 크게 잡은 값입니다. 10배 크게(0.1 L/min) 하면 수요 0에서
+%         체크밸브 유량이 0 부근을 오갈 때 스텝이 약 10배 늘어납니다 (결과는 같음).
 s = struct('Lp',Lp,'Dp',Dp,'dp_crack',dp_crack,'R_ovr',R_ovr,'CdA_max',CdA_max, ...
-    'Q_rated',Q_rated,'Q_o',fQo*Q_rated,'R_rev',20.7e6/(0.1e-3/60),'tau',0.003,'V',V,'UA',0);
+    'Q_rated',Q_rated,'Q_o',fQo*Q_rated,'R_rev',20.7e6/(1e-3/60),'tau',0.003,'V',V,'UA',0);
 end
